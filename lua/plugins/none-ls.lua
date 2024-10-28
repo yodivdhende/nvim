@@ -9,6 +9,8 @@ return {
 			source = {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.prettier,
+				null_ls.builtins.formatting.djlint,
+				null_ls.builtins.diagnostics.djlint,
 				require("none-ls.diagnostics.eslint_d"),
 			}
 		})

@@ -27,10 +27,10 @@ return {
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.html.setup({
+			lspconfig.eslint.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.eslint.setup({
+			lspconfig.angularls.setup({
 				capabilities = capabilities,
 			})
 
