@@ -14,7 +14,12 @@ return {
 		},
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls" }
+				ensure_installed = {
+					"lua_ls",
+					"html",
+					"eslint",
+					"angularls",
+				}
 			})
 		end
 	},
@@ -25,6 +30,9 @@ return {
 			local lspconfig = require("lspconfig")
 
 			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.html.setup({
 				capabilities = capabilities,
 			})
 			lspconfig.eslint.setup({
