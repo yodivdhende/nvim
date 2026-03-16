@@ -17,7 +17,7 @@ return {
     vim.keymap.set("n", "<M-j>", require("smart-splits").resize_down)
     vim.keymap.set("n", "<M-k>", require("smart-splits").resize_up)
     vim.keymap.set("n", "<M-l>", require("smart-splits").resize_right)
-    -- moving between splits
+    -- moving between splits (C-hjkl are set in config/keymaps.lua to run after LazyVim defaults)
     vim.keymap.set("n", "<C-\\>", require("smart-splits").move_cursor_previous)
     -- swapping buffers between windows
     vim.keymap.set("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
