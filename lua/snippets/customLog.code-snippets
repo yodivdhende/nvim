@@ -1,0 +1,68 @@
+{
+  // Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+  // Placeholders with the same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"scope": "javascript,typescript",
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+  "Red log": {
+    "prefix": "logRed",
+    "body": "console.log(`%c $1`, `background:red;color:black`, { $2 });$0",
+    "description": "loging with red background"
+  },
+  "Yellow log": {
+    "prefix": "logYellow",
+    "body": "console.log(`%c $1`, `background:yellow;color:black`, { $2 });$0",
+    "description": "loging with yellow background"
+  },
+  "Orange log": {
+    "prefix": "logOrange",
+    "body": "console.log(`%c $1`, `background:orange;color:black`, { $2 });$0",
+    "description": "loging with orange background"
+  },
+  "Green log": {
+    "prefix": "logGreen",
+    "body": "console.log(`%c $1`, `background:lime;color:black`, { $2 });$0",
+    "description": "loging with green background"
+  },
+  "Blue log": {
+    "prefix": "logBlue",
+    "body": "console.log(`%c $1`, `background:aqua;color:black`, { $2 });$0",
+    "description": "loging with blue background"
+  },
+  "Purple log": {
+    "prefix": "logPurple",
+    "body": "console.log(`%c $1`, `background:purple;color:white`, { $2 });$0",
+    "description": "loging with purple background"
+  },
+  "Pink log": {
+    "prefix": "logPink",
+    "body": "console.log(`%c $1`, `background:pink;color:black`, { $2 });$0",
+    "description": "loging with pink background"
+  },
+  "White log": {
+    "prefix": "logWhite",
+    "body": "console.log(`%c $1`, `background:white;color:black`, { $2 });$0",
+    "description": "loging with white background"
+  },
+  "Gray log": {
+    "prefix": "logGray",
+    "body": "console.log(`%c $1`, `background:silver;color:black`, { $2 });$0",
+    "description": "loging with gray background"
+  },
+  "Black log": {
+    "prefix": "logBlack",
+    "body": "console.log(`%c $1`, `background:black;color:white`, { $2 });$0",
+    "description": "loging with black background"
+  },
+}
