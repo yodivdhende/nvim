@@ -1,26 +1,19 @@
 return {
-  --  {
-  --    "scottmckendry/cyberdream.nvim",
-  --    lazy = false,
-  --    priority = 1000,
-  --  },
   {
-    "ficcdaf/ashen.nvim",
-    -- optional but recommended,
-    -- pin to the latest stable release:
+    "sainnhe/sonokai",
     lazy = false,
     priority = 1000,
-    -- configuration is optional!
-    opts = {
-      -- your settings here
-    },
+    config = function()
+      vim.g.sonokai_style = "shusia"
+      vim.g.sonokai_transparent_background = 1
+      vim.cmd("colorscheme sonokai")
+    end,
   },
 
-  -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "ashen",
+      colorscheme = "sonokai",
     },
   },
 }
