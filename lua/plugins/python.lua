@@ -1,11 +1,7 @@
 return {
-  -- LazyVim's Python extra: pyright LSP, treesitter, ruff formatting/linting
-  { import = "lazyvim.plugins.extras.lang.python" },
-
   -- Virtual environment selector
   {
     "linux-cultist/venv-selector.nvim",
-    branch = "regexp",
     dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
     opts = {},
     keys = {
@@ -22,6 +18,28 @@ return {
         vim.list_extend(opts.ensure_installed, { "python" })
       end
     end,
+  },
+
+  -- Configure pyright to index the full workspace so it can suggest imports
+  -- from project files that aren't currently open
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                autoImportCompletions = true,
+                diagnosticMode = "openFilesOnly",
+                typeCheckingMode = "standard",
+              },
+            },
+          },
+        },
+      },
+    },
   },
 
   -- Ensure Mason installs the necessary tools
