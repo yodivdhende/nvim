@@ -1,26 +1,16 @@
 return {
-  --  {
-  --    "scottmckendry/cyberdream.nvim",
-  --    lazy = false,
-  --    priority = 1000,
-  --  },
   {
-    "ficcdaf/ashen.nvim",
-    -- optional but recommended,
-    -- pin to the latest stable release:
+    -- Angular-inspired custom colorscheme (local)
+    name = "angular",
+    dir = vim.fn.stdpath("config"),
     lazy = false,
     priority = 1000,
-    -- configuration is optional!
-    opts = {
-      -- your settings here
-    },
   },
 
-  -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "ashen",
+      colorscheme = "angular",
     },
   },
 }
