@@ -1,17 +1,10 @@
 return {
-  -- add gruvbox
-  {
-    "ellisonleao/gruvbox.nvim",
-    opts = {
-      transparent_mode = true,
-    },
-  },
+  { "erizocosmico/vim-firewatch" },
 
-  -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "firewatch",
     },
   },
 }
