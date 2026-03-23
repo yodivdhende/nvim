@@ -1,0 +1,11 @@
+{
+  "name": "custom-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": ["javascript", "typescript", "typescriptreact", "javascriptreact"],
+        "path": "./customLog.json"
+      }
+    ]
+  }
+}
