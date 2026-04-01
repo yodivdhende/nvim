@@ -10,6 +10,8 @@ return {
         "javascript",
         "typescript",
       })
+      opts.highlight = opts.highlight or {}
+      opts.highlight.enable = true
     end,
   },
 }
