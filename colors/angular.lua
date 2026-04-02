@@ -80,17 +80,19 @@ local c = {
   ok        = "#3a8c58", -- aged forest green
 }
 
+local transparent = vim.g.angular_transparent == true
+
 local function hi(group, opts)
   vim.api.nvim_set_hl(0, group, opts)
 end
 
 -- ─── Editor ──────────────────────────────────────────────────────────────────
-hi("Normal",        { fg = c.fg1,        bg = c.bg1 })
-hi("NormalFloat",   { fg = c.fg1,        bg = c.bg3 })
-hi("NormalNC",      { fg = c.fg2,        bg = c.bg0 })
-hi("FloatBorder",   { fg = c.red_mid,    bg = c.bg3 })
-hi("FloatTitle",    { fg = c.red_primary,bg = c.bg3, bold = true })
-hi("SignColumn",    { fg = c.fg3,        bg = c.bg1 })
+hi("Normal",        { fg = c.fg1,        bg = transparent and "NONE" or c.bg1 })
+hi("NormalFloat",   { fg = c.fg1,        bg = transparent and "NONE" or c.bg3 })
+hi("NormalNC",      { fg = c.fg2,        bg = transparent and "NONE" or c.bg0 })
+hi("FloatBorder",   { fg = c.red_mid,    bg = transparent and "NONE" or c.bg3 })
+hi("FloatTitle",    { fg = c.red_primary,bg = transparent and "NONE" or c.bg3, bold = true })
+hi("SignColumn",    { fg = c.fg3,        bg = transparent and "NONE" or c.bg1 })
 hi("ColorColumn",   { bg = c.bg2 })
 hi("CursorLine",    { bg = c.bg2 })
 hi("CursorColumn",  { bg = c.bg2 })
@@ -257,8 +259,8 @@ hi("TelescopeSelectionCaret",  { fg = c.red_vivid })
 hi("TelescopeMatching",        { fg = c.red_hot,    bold = true })
 
 -- ─── nvim-tree / neo-tree ─────────────────────────────────────────────────────
-hi("NeoTreeNormal",            { fg = c.fg2,        bg = c.bg0 })
-hi("NeoTreeNormalNC",          { fg = c.fg3,        bg = c.bg0 })
+hi("NeoTreeNormal",            { fg = c.fg2,        bg = transparent and "NONE" or c.bg0 })
+hi("NeoTreeNormalNC",          { fg = c.fg3,        bg = transparent and "NONE" or c.bg0 })
 hi("NeoTreeRootName",          { fg = c.red_primary,bold = true })
 hi("NeoTreeDirectoryName",     { fg = c.fg1 })
 hi("NeoTreeDirectoryIcon",     { fg = c.red_mid })

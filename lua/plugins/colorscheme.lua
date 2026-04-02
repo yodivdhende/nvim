@@ -5,6 +5,9 @@ return {
     dir = vim.fn.stdpath("config"),
     lazy = false,
     priority = 1000,
+    init = function()
+      vim.g.angular_transparent = true
+    end,
   },
 
   {
