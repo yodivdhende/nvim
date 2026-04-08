@@ -39,10 +39,23 @@ return {
 			})
 		end
 	},
+    init = function()
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local bufnr = args.buf
+          local opts = { noremap = true, silent = true, buffer = bufnr }
+          vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+        end,
+      })
+    end,
     opts = {
       servers = {
         svelte = {},
-        eslint = {},
+        eslint = {
+          settings = {
+            workingDirectories = { { mode = "auto" } },
+          },
+        },
         html = {},
       },
     },
