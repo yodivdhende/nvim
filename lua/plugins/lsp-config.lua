@@ -11,6 +11,15 @@ return {
   -- Configure LSP servers via opts (LazyVim merges these cleanly)
   {
     "neovim/nvim-lspconfig",
+    init = function()
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local bufnr = args.buf
+          local opts = { noremap = true, silent = true, buffer = bufnr }
+          vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+        end,
+      })
+    end,
     opts = {
       servers = {
         svelte = {
@@ -44,13 +53,5 @@ return {
         html = {},
       },
     },
-    init = function()
-      vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(args)
-          local o = { noremap = true, silent = true, buffer = args.buf }
-          vim.keymap.set("n", "gl", vim.diagnostic.open_float, o)
-        end,
-      })
-    end,
   },
 }
