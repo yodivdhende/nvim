@@ -4,7 +4,7 @@ return {
     "mason-org/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "svelte-language-server", "eslint-lsp", "html-lsp" })
+      vim.list_extend(opts.ensure_installed, { "svelte-language-server", "typescript-language-server", "eslint-lsp", "html-lsp" })
     end,
   },
 
@@ -50,7 +50,29 @@ return {
     end,
     opts = {
       servers = {
-        svelte = {},
+        svelte = {
+          settings = {
+            svelte = {
+              plugin = {
+                typescript = { enabled = true },
+                css = { enabled = true },
+                html = { enabled = true },
+              },
+            },
+          },
+        },
+        -- ts_ls resolves $lib and other tsconfig path aliases in .svelte files
+        ts_ls = {
+          init_options = {
+            plugins = {
+              {
+                name = "@svelte/ts-plugin",
+                location = vim.fn.expand("$HOME/.local/share/nvim/mason/packages/svelte-language-server/node_modules/@svelte/ts-plugin"),
+              },
+            },
+          },
+          filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "svelte" },
+        },
         eslint = {
           settings = {
             workingDirectories = { { mode = "auto" } },
