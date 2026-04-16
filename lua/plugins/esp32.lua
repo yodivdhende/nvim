@@ -33,12 +33,9 @@ return {
             "--pch-storage=memory",
           },
           root_dir = function(fname)
-            return require("lspconfig.util").root_pattern(
-              "platformio.ini",
-              "compile_commands.json",
-              ".clangd",
-              ".git"
-            )(fname)
+            return require("lspconfig.util").root_pattern("platformio.ini", "compile_commands.json", ".clangd", ".git")(
+              fname
+            )
           end,
           capabilities = {
             offsetEncoding = { "utf-16" },
@@ -55,7 +52,7 @@ return {
 
   -- ─── Mason: install LSP servers & tools ──────────────────────────────────
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
       vim.list_extend(opts.ensure_installed, {
@@ -104,12 +101,12 @@ return {
       "Piodebug",
     },
     keys = {
-      { "<leader>eb", "<cmd>Piobuild<cr>",      desc = "PIO Build" },
-      { "<leader>eu", "<cmd>Pioupload<cr>",     desc = "PIO Upload" },
-      { "<leader>em", "<cmd>Piomonitor<cr>",    desc = "PIO Monitor" },
-      { "<leader>ec", "<cmd>Pioclean<cr>",      desc = "PIO Clean" },
-      { "<leader>ed", "<cmd>Pioupload<cr>",     desc = "PIO Upload + Monitor" },
-      { "<leader>ei", "<cmd>Pioinit<cr>",       desc = "PIO Init Project" },
+      { "<leader>eb", "<cmd>Piobuild<cr>", desc = "PIO Build" },
+      { "<leader>eu", "<cmd>Pioupload<cr>", desc = "PIO Upload" },
+      { "<leader>em", "<cmd>Piomonitor<cr>", desc = "PIO Monitor" },
+      { "<leader>ec", "<cmd>Pioclean<cr>", desc = "PIO Clean" },
+      { "<leader>ed", "<cmd>Pioupload<cr>", desc = "PIO Upload + Monitor" },
+      { "<leader>ei", "<cmd>Pioinit<cr>", desc = "PIO Init Project" },
       { "<leader>eI", "<cmd>Piolibinstall<cr>", desc = "PIO Install Library" },
     },
   },
@@ -163,8 +160,8 @@ return {
           miDebuggerServerAddress = "localhost:3333",
           setupCommands = {
             { text = "set remote hardware-watchpoint-limit 2", ignoreFailures = true },
-            { text = "mon reset halt",                         ignoreFailures = false },
-            { text = "maintenance flush register-cache",       ignoreFailures = true },
+            { text = "mon reset halt", ignoreFailures = false },
+            { text = "maintenance flush register-cache", ignoreFailures = true },
           },
           logging = { engineLogging = false },
         },
