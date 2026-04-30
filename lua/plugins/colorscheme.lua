@@ -1,19 +1,19 @@
 return {
   {
-    -- Angular-inspired custom colorscheme (local)
-    name = "angular",
-    dir = vim.fn.stdpath("config"),
+    "sainnhe/sonokai",
     lazy = false,
     priority = 1000,
-    init = function()
-      vim.g.angular_transparent = true
+    config = function()
+      vim.g.sonokai_style = "shusia"
+      vim.g.sonokai_transparent_background = 1
+      vim.cmd("colorscheme sonokai")
     end,
   },
 
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "angular",
+      colorscheme = "sonokai",
     },
   },
 }
