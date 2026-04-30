@@ -24,6 +24,28 @@ return {
     end,
   },
 
+  -- Configure pyright to index the full workspace so it can suggest imports
+  -- from project files that aren't currently open
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                autoImportCompletions = true,
+                diagnosticMode = "openFilesOnly",
+                typeCheckingMode = "standard",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
   -- Ensure Mason installs the necessary tools
   {
     "mason-org/mason.nvim",
