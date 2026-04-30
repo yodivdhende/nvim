@@ -37,12 +37,10 @@ return {
           },
         })
       end
-      -- Register for future SQL buffers
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "sql", "mysql", "plsql" },
         callback = setup_completion,
       })
-      -- Apply immediately — the FileType event already fired for the current buffer
       setup_completion()
     end,
   },
