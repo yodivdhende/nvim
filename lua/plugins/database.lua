@@ -29,18 +29,21 @@ return {
     dependencies = { "tpope/vim-dadbod" },
     ft = { "sql", "mysql", "plsql" },
     config = function()
-      -- Hook into nvim-cmp for SQL completions
+      local function setup_completion()
+        require("cmp").setup.buffer({
+          sources = {
+            { name = "vim-dadbod-completion" },
+            { name = "buffer" },
+          },
+        })
+      end
+      -- Register for future SQL buffers
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "sql", "mysql", "plsql" },
-        callback = function()
-          require("cmp").setup.buffer({
-            sources = {
-              { name = "vim-dadbod-completion" },
-              { name = "buffer" },
-            },
-          })
-        end,
+        callback = setup_completion,
       })
+      -- Apply immediately — the FileType event already fired for the current buffer
+      setup_completion()
     end,
   },
 }
