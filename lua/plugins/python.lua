@@ -1,11 +1,7 @@
 return {
-  -- LazyVim's Python extra: pyright LSP, treesitter, ruff formatting/linting
-  { import = "lazyvim.plugins.extras.lang.python" },
-
   -- Virtual environment selector
   {
     "linux-cultist/venv-selector.nvim",
-    branch = "regexp",
     dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim" },
     opts = {},
     keys = {
