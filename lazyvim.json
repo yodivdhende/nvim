@@ -10,7 +10,6 @@
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.linting.eslint"
   ],
-  "install_version": 8,
   "news": {
     "NEWS.md": "11866"
   },
