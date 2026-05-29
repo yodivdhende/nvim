@@ -16,7 +16,7 @@ return {
     },
   },
 
-  -- Configure LazyVim to load gruvbox
+  -- Configure LazyVim to load ashen
   {
     "LazyVim/LazyVim",
     opts = {
