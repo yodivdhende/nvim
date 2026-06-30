@@ -33,7 +33,7 @@ return {
                 autoSearchPaths = true,
                 autoImportCompletions = true,
                 diagnosticMode = "openFilesOnly",
-                typeCheckingMode = "standard",
+                typeCheckingMode = "basic",
               },
             },
           },
