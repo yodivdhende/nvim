@@ -7,6 +7,16 @@ return {
       vim.g.sonokai_style = "shusia"
       vim.g.sonokai_transparent_background = 1
       vim.cmd("colorscheme sonokai")
+
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "sonokai",
+        callback = function()
+          vim.api.nvim_set_hl(0, "Visual", { bg = "#77859e" })
+          vim.api.nvim_set_hl(0, "VisualNOS", { bg = "#77859e" })
+        end,
+      })
+      vim.api.nvim_set_hl(0, "Visual", { bg = "#77859e" })
+      vim.api.nvim_set_hl(0, "VisualNOS", { bg = "#77859e" })
     end,
   },
 
