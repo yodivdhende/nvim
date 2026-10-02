@@ -13,10 +13,14 @@ return {
         callback = function()
           vim.api.nvim_set_hl(0, "Visual", { bg = "#77859e" })
           vim.api.nvim_set_hl(0, "VisualNOS", { bg = "#77859e" })
+          vim.api.nvim_set_hl(0, "LineNr", { fg = "#9a8fa8" })
+          vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#e8e4ec", bold = true })
         end,
       })
       vim.api.nvim_set_hl(0, "Visual", { bg = "#77859e" })
       vim.api.nvim_set_hl(0, "VisualNOS", { bg = "#77859e" })
+      vim.api.nvim_set_hl(0, "LineNr", { fg = "#9a8fa8" })
+      vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#e8e4ec", bold = true })
     end,
   },
 
