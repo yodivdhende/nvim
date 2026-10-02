@@ -1,2 +1,4 @@
 *colorscheme.lua
+.env
+lua/config/db_connections/local.lua
 
