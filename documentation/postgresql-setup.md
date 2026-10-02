@@ -34,28 +34,55 @@ Enter a PostgreSQL connection URL when prompted:
 postgresql://user:password@localhost:5432/mydb
 ```
 
-### Option B — via environment variable (recommended for projects)
+### Option B — via `.env` file (recommended for projects)
 
-Set these in your shell or `.env` file:
+Create a `.env` file in the project root:
 
 ```sh
-export DBUI_URL="postgresql://user:password@localhost:5432/mydb"
-export DBUI_NAME="My DB"
+DBUI_URL=postgresql://user:password@localhost:5432/mydb
+DBUI_NAME=My DB
 ```
 
-Open Neovim — the connection appears automatically in the DBUI drawer.
+`tpope/vim-dotenv` loads this automatically — on Neovim startup and whenever
+you `:cd` into a directory containing its own `.env` — and exports
+`$DBUI_URL`/`$DBUI_NAME` into the process environment, no shell or direnv
+setup required. The connection then appears automatically in the DBUI drawer.
 
-### Option C — hardcoded named connections (permanent)
+If you need to load it manually (e.g. after editing the file), run:
 
-Add to `lua/config/options.lua`:
+```vim
+:Dotenv .env
+```
+
+Use `:verbose Dotenv` to confirm which variables were set and from where.
+
+### Option C — hardcoded connections, e.g. Google Cloud SQL (gitignored)
+
+For connections you want defined directly in the nvim config rather than
+`.env` — e.g. a Google Cloud SQL instance — add entries to
+`lua/config/db_connections/local.lua`:
 
 ```lua
-vim.g.dbs = {
-  { name = "local_mydb", url = "postgresql://user:password@localhost:5432/mydb" },
+-- Gitignored: hardcoded database connections that should never be committed.
+return {
+  {
+    name = "GCloud SQL",
+    -- Via Cloud SQL Auth Proxy: cloud-sql-proxy PROJECT:REGION:INSTANCE --port 5433
+    url = "postgresql://user:password@127.0.0.1:5433/mydb",
+  },
 }
 ```
 
-> **Warning:** Never commit credentials to git. Prefer Option B with a gitignored `.env`.
+This file is required by `lua/plugins/database.lua` and its entries are
+merged into `vim.g.dbs` alongside the `.env`-sourced connection, so both
+show up as separate entries in the DBUI drawer. It's listed in `.gitignore`
+(`lua/config/db_connections/local.lua`) so the credential never reaches git.
+
+For Google Cloud SQL specifically, either:
+- run the [Cloud SQL Auth Proxy](https://cloud.google.com/sql/docs/postgres/connect-auth-proxy) locally and point the URL at `127.0.0.1:<port>` as above, or
+- connect directly to the instance's public IP with `?sslmode=require` appended to the URL, provided your IP is authorized in the instance's network settings.
+
+> **Warning:** Never put credentials in a tracked file like `lua/config/options.lua`. Use Option B (`.env`) for personal/local databases, or this gitignored file for connections you want hardcoded.
 
 ## Keymaps
 
@@ -120,6 +147,8 @@ This directory is outside your git repo — credentials are not tracked.
 ## Security Checklist
 
 - [ ] Never put credentials in `lua/config/options.lua` if that file is tracked by git
-- [ ] Add `.env` to `.gitignore`
-- [ ] Use `DBUI_URL` / `DBUI_NAME` env vars for project-specific connections
+- [ ] Add `.env` to `.gitignore` (already done in this repo)
+- [ ] Add `lua/config/db_connections/local.lua` to `.gitignore` (already done in this repo)
+- [ ] Use a `.env` file + `tpope/vim-dotenv` for project-specific connections
+- [ ] Use `lua/config/db_connections/local.lua` for connections you want hardcoded (e.g. Cloud SQL)
 - [ ] Use Option A (UI prompt) for one-off local connections

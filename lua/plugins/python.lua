@@ -42,6 +42,22 @@ return {
     },
   },
 
+  -- Hide pyright's LSP progress popups (noice shows a small notification
+  -- every time pyright re-analyzes, which fires on nearly every edit)
+  {
+    "folke/noice.nvim",
+    opts = function(_, opts)
+      opts.routes = opts.routes or {}
+      table.insert(opts.routes, {
+        filter = { event = "lsp", kind = "progress", cond = function(message)
+          return message.opts.progress and message.opts.progress.client == "pyright"
+        end },
+        opts = { skip = true },
+      })
+      return opts
+    end,
+  },
+
   -- Ensure Mason installs the necessary tools
   {
     "mason-org/mason.nvim",

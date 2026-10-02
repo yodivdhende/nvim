@@ -4,6 +4,41 @@ return {
     lazy = true,
   },
   {
+    "tpope/vim-dotenv",
+    cmd = { "Dotenv" },
+    init = function()
+      local function build_dbs()
+        local dbs = {}
+
+        if vim.env.DBUI_URL and vim.env.DBUI_NAME then
+          table.insert(dbs, { name = vim.env.DBUI_NAME, url = vim.env.DBUI_URL })
+        end
+
+        -- Hardcoded connections (gitignored, e.g. Google Cloud SQL) live here
+        local ok, extra_dbs = pcall(require, "config.db_connections.local")
+        if ok and type(extra_dbs) == "table" then
+          for _, entry in ipairs(extra_dbs) do
+            table.insert(dbs, entry)
+          end
+        end
+
+        vim.g.dbs = dbs
+      end
+
+      local function load_dotenv()
+        local env_file = vim.fn.getcwd() .. "/.env"
+        if vim.fn.filereadable(env_file) == 1 then
+          vim.cmd("Dotenv " .. vim.fn.fnameescape(env_file))
+        end
+        build_dbs()
+      end
+
+      vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged" }, {
+        callback = load_dotenv,
+      })
+    end,
+  },
+  {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
       "tpope/vim-dadbod",
@@ -19,9 +54,8 @@ return {
       vim.g.db_ui_save_location = vim.fn.stdpath("data") .. "/db_ui"
       vim.g.db_ui_use_nerd_fonts = 1
       vim.g.db_ui_show_database_icon = 1
-      -- Store connections in a local file (gitignored)
-      vim.g.db_ui_env_variable_url = "DBUI_URL"
-      vim.g.db_ui_env_variable_name = "DBUI_NAME"
+      -- Connections are populated into vim.g.dbs: local one from .env
+      -- (via tpope/vim-dotenv), extra ones from config/db_connections/local.lua
     end,
   },
   {
