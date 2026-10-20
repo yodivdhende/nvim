@@ -21,9 +21,10 @@ return {
         os = {
           -- the default "nvim-remote" preset uses --remote-tab; plain --remote would open the file
           -- inside the lazygit float itself, so close the float first and edit in the previous window
-          edit = [[nvim --server "$NVIM" --remote-expr "v:lua.lazygit_edit({{filename}})"]],
-          editAtLine = [[nvim --server "$NVIM" --remote-expr "v:lua.lazygit_edit({{filename}}, {{line}})"]],
-          editAtLineAndWait = [[nvim --server "$NVIM" --remote-expr "v:lua.lazygit_edit({{filename}}, {{line}})"]],
+          -- lazygit shell-quotes {{filename}}, so unwrap it into a variable before building the expression
+          edit = [[f={{filename}}; nvim --server "$NVIM" --remote-expr "v:lua.lazygit_edit('$f')"]],
+          editAtLine = [[f={{filename}}; nvim --server "$NVIM" --remote-expr "v:lua.lazygit_edit('$f', {{line}})"]],
+          editAtLineAndWait = [[f={{filename}}; nvim --server "$NVIM" --remote-expr "v:lua.lazygit_edit('$f', {{line}})"]],
         },
       },
     },
